@@ -1,0 +1,86 @@
+##################################################################################################
+# Details service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: details-svc
+  labels:
+    app: details-svc
+    service: details-svc
+spec:
+  ports:
+  - name: http
+    protocol: TCP
+    port: 9082
+    targetPort: 9082
+  selector:
+    app: details-svc
+  type: NodePort
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ctibco-details-svc
+  labels:
+    account: details-svc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: details-svc-v1
+ # annotations:
+ #   "sidecar.jaegertracing.io/inject": "true"
+  labels:
+    app: details-svc
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: details-svc
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: details-svc
+        version: v1
+    spec:
+      serviceAccountName: ctibco-details-svc
+      containers:
+      - env:
+        - name: DETAILS_MY_PORT
+          value: "9082"
+        - name: BW_PROFILE
+          value: "docker"
+        - name: BW_LOGLEVEL
+          value: "ERROR" 
+        - name: BW_JAVA_OPTS
+          value: "-Dbw.engine.opentracing.enable=true" 
+        - name: JAEGER_ENDPOINT
+          value: http://jaeger-collector.istio-system.svc:14268/api/traces
+        - name: JAEGER_PROPAGATION
+          value: b3
+        - name: SERVICE_FORMATTER
+          value: details-svc
+        - name: JAEGER_REPORTER_LOG_SPANS
+          value: "true"
+        - name: JAEGER_SAMPLER_TYPE
+          value: const
+        - name: JAEGER_SAMPLER_PARAM
+          value: "1"
+        - name: BW_PROMETHEUS_ENABLE
+          value: "true"
+        image: docker.io/u3132/d8mon:1.0.0
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: 500Mi
+            cpu: 500m
+          limits:
+            memory: 900Mi
+            cpu: 1000m
+        name: details-svc
+        ports:
+        - containerPort: 9082
+---
