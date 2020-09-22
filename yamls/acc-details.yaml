@@ -73,7 +73,7 @@ spec:
           value: "1"
         - name: BW_PROMETHEUS_ENABLE
           value: "true"
-        image: docker.io/u3132/d8mon:1.0.0
+        image: docker.io/u3132/d6:1.0.0
         imagePullPolicy: IfNotPresent
         resources:
           requests:
