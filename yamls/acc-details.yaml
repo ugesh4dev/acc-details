@@ -60,8 +60,8 @@ spec:
         - name: BW_PROMETHEUS_ENABLE
           value: "true"
         image: e17686e35137.ngrok.io/details:1.0.0
-        imagePullPolicy: IfNotPresent
-        imagePullSecrets:
+        imagePullPolicy: Always
+      imagePullSecrets:
         - name: regcredkd
         resources:
           requests:
