@@ -61,8 +61,6 @@ spec:
           value: "true"
         image: e17686e35137.ngrok.io/details:1.0.0
         imagePullPolicy: Always
-      imagePullSecrets:
-      - name: regcredkd
         resources:
           requests:
             memory: 500Mi
@@ -73,4 +71,6 @@ spec:
         name: details-svc
         ports:
         - containerPort: 9082
+      imagePullSecrets:
+       - name: regcredkd
 ---
