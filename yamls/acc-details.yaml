@@ -16,7 +16,7 @@ spec:
     targetPort: 9082
   selector:
     app: details-svc
-  type: ClusterIP
+  type: NodePort
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -74,15 +74,3 @@ spec:
       imagePullSecrets:
         - name: regcred
 ---
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: http-ingress
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /details
-        backend:
-          serviceName: details-svc
-          servicePort: 9082
