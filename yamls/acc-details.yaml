@@ -16,7 +16,7 @@ spec:
     targetPort: 9082
   selector:
     app: details-svc
-  type: ClusterIP
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: ServiceAccount
