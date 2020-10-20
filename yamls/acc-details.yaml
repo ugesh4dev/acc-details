@@ -16,9 +16,7 @@ spec:
     targetPort: 9082
   selector:
     app: details-svc
-  type: LoadBalancer
-  loadBalancerSourceRanges:
-   - 49.36.22.51/32
+  type: NodePort
 ---
 apiVersion: v1
 kind: ServiceAccount
