@@ -16,7 +16,7 @@ spec:
     targetPort: 9082
   selector:
     app: details-svc
-  type: ClusterI
+  type: ClusterIP
 ---
 apiVersion: v1
 kind: ServiceAccount
