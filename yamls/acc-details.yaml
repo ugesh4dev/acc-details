@@ -59,7 +59,7 @@ spec:
           value: "-Dbw.engine.opentracing.enable=true" 
         - name: BW_PROMETHEUS_ENABLE
           value: "true"
-        image: localhost:8083/details:1.0.0
+        image: 172.31.28.242:8083/details:2.0.0
         imagePullPolicy: Always
         resources:
           requests:
