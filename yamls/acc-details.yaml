@@ -59,7 +59,7 @@ spec:
           value: "-Dbw.engine.opentracing.enable=true" 
         - name: BW_PROMETHEUS_ENABLE
           value: "true"
-        image: e17686e35137.ngrok.io/details:1.0.0
+        image: f5cbb58ce80d.ngrok.io/details:1.0.0
         imagePullPolicy: Always
         resources:
           requests:
@@ -72,5 +72,5 @@ spec:
         ports:
         - containerPort: 9082
       imagePullSecrets:
-       - name: regcredkd
+       - name: regcred
 ---
