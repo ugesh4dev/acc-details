@@ -59,10 +59,10 @@ spec:
           value: "-Dbw.engine.opentracing.enable=true" 
         - name: BW_PROMETHEUS_ENABLE
           value: "true"
-        image: localhost:8083/details:1.0.0
+        image: e17686e35137.ngrok.io/details:1.0.0
         imagePullPolicy: IfNotPresent
         imagePullSecrets:
-        - name: regcred
+        - name: regcredkd
         resources:
           requests:
             memory: 500Mi
