@@ -72,5 +72,5 @@ spec:
         ports:
         - containerPort: 9082
       imagePullSecrets:
-       - name: regcred
+        - name: regcred
 ---
